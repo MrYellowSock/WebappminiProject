@@ -1,0 +1,397 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.item1 {
+    margin-top: 30px;
+    grid-area: header;
+    text-align: center;
+}
+
+.item2 {
+    grid-area: menu;
+}
+
+.item3 {
+    grid-area: main;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item5 {
+    grid-area: footer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 'header header header header header header' 'main main main main main main' 'footer footer footer footer footer footer';
+    gap: 50px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: #230102;
+}
+
+    .grid-container > div {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+.item1 a {
+    color: #FFCD00;
+}
+
+.item1 h1 {
+    color: #fdfdfd;
+    margin: 20px 0;
+}
+
+.item3 {
+    margin: auto;
+    align-items: center;
+    padding: 10px;
+}
+
+.liner1 {
+    padding-top: 0px;
+    padding-left: 100px;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.none {
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+/* start */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(125deg, #EA2027, #230102);
+    padding: 20px;
+    font-family: Arial;
+}
+
+/* Center website */
+
+.main {
+    margin: auto;
+}
+
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+}
+
+h3 {
+    margin-top: 17px;
+}
+
+.row {
+    margin: 8px -16px;
+}
+
+    /* Add padding BETWEEN each column */
+
+    .row,
+    .row > .column {
+        margin: auto;
+        padding: 10px;
+    }
+
+/* Create four equal columns that floats next to each other */
+
+.column {
+    width: 30%;
+}
+
+/* Clear floats after rows */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Content */
+
+.content {
+    padding: 8px;
+}
+
+.Bg {
+    background-color: #780E11;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.T1 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 30px;
+    font-weight: bolder;
+    padding-left: 30px;
+}
+
+@media screen and (max-width: 900px) {
+    .column {
+        width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+/* end */
+
+.bd {
+    border-color: #fdfdfd;
+}
+
+
+.Bg {
+    background-color: #780E11;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+th,
+td {
+    height: 40px;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.bgtd {
+    border-color: black;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.bgth {
+    border-color: black;
+    background-color: #ffbd06;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    background-image: linear-gradient(125deg, #EA2027, #230102);
+}
+
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-item {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.detail {
+    width: 350px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: solid 2px cornsilk;
+    background-color: #ffbd06;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.img-topic {
+    width: 80%;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.img-food {
+    max-width: 400px;
+    width: 50%;
+    height: auto;
+    margin-top: -50px;
+}
+
+.button {
+    width: 170px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1px 2px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+    border: solid 2px cornsilk;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.button1 {
+    background-color: #ffbd06;
+    color: black;
+}
+
+    .button1:hover {
+        background-color: #abaeab;
+        color: white;
+    }
+
+.frame-add {
+    max-width: 450px;
+    width: 500px;
+    height: auto;
+    background-color: rgba(128, 128, 128, 0.25);
+    border: solid 2px cornsilk;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 10px;
+    margin-bottom: 50px;
+}
+
+.frame-input {
+    width: 90%;
+    height: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: solid none;
+}
+
+.bell {
+    width: auto;
+}
+
+
+.img-topic {
+    width: 80%;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.img-food {
+    max-width: 400px;
+    width: 50%;
+    height: auto;
+    margin-top: -50px;
+}
+
+.button_bell {
+    width: 40px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.button1 {
+    background-color: #ff0606;
+    color: black;
+}
+
+    .button1:hover {
+        background-color: #abaeab;
+        color: white;
+    }
+
+
+
+
+body {
+    width: 100%;
+    height: auto;
+    background-image: linear-gradient(125deg, #EA2027, #230102);
+}
+
+.totalbox {
+    width: auto;
+    font-size: 18px;
+    font-weight: bolder;
+    border: solid 2px #ffbd06;
+    background-color: rgb(255, 255, 255);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
+}
+
+.img-topic {
+    width: 80%;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.img-food {
+    max-width: 400px;
+    width: 50%;
+    height: auto;
+    margin-top: -50px;
+}
+
+.button {
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+}
+
+.button1 {
+    background-color: #ff0606;
+    color: black;
+}
+
+    .button1:hover {
+        background-color: #abaeab;
+        color: white;
+    }

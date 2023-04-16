@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using BookStoreApi.Models;
+
+@model HomeIndex
+
+<style>
+</style>
+<h2 class="logo">FOODY</h2>
+@if (Model.UserId.HasValue)
+{
+    <div>
+        @foreach (string item in Model.Aliases)
+        {
+            <label>@item</label>
+        }
+    </div>
+    <p>User ID: @Model.UserId</p>
+}
+<div> 
+    @foreach (var item in Model.Hosts)
+    {
+        string closeTime = DateTimeOffset.FromUnixTimeMilliseconds(item.Value.Closed).ToLocalTime().ToString("h:mm tt");
+        <fieldset>
+            <p>name :@item.Value.OwnerName</p>
+            <p># @item.Value.OwnerUserId</p>
+            <p>at : @item.Value.Location</p>
+            <p>going to :@item.Value.TargetLocation</p>
+            <label>received : @item.Key</label> / <label>@item.Value.Limit</label>
+            <a href="/order/buyer/@item.Value.Id"><button>ORDER</button></a>
+            <p>close at : @closeTime</p>
+        </fieldset>
+    }
+</div>
+<div> 
+    <a href="/order/host"><button>+</button></a>
+    <a href="/list/host"><button>list</button></a>
+</div>

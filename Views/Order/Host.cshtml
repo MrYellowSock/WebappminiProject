@@ -1,0 +1,25 @@
+<form action="/order/host/add" method="post">
+  <div>
+    <label for="OwnerName">Name:</label>
+    <input type="text" id="OwnerName" name="OwnerName" required />
+  </div>
+  <div>
+    <label for="Location">Location:</label>
+    <input type="text" id="Location" name="Location" required />
+  </div>
+  <div>
+    <label for="OwnerContact">Phone num:</label>
+    <input type="text" id="OwnerContact" name="OwnerContact" required />
+  </div>
+  <div>
+    <label for="TargetLocation">Going to:</label>
+    <input type="text" id="TargetLocation" name="TargetLocation" required />
+  </div>
+  <div>
+    <label for="Closed">Expire in:</label>
+    <input type="number" id="Closed" name="Closed" min="5" max="30" required />
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>

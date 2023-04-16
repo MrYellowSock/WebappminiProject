@@ -1,0 +1,43 @@
+@using BookStoreApi.Models;
+
+@model List<KeyValuePair<HostOrder,BuyerOrder>>
+
+<a href="/list/buyer">ฝาก</a>
+<div> 
+    @foreach (var item in Model)
+    {
+        <fieldset>
+            <p>name :@item.Value.OwnerName</p>
+            <p># @item.Value.OwnerUserId</p>
+            <p>contact @item.Value.OwnerContact</p>
+
+            <p>menu : @item.Value.Menu</p>
+            <p>location :@item.Key.Location</p>
+
+            <form action="/order/host/tick" method="post">
+                <input type="text" name="Id" value="@item.Value.Id" hidden>
+                @if(item.Value.HostChecked)
+                {
+                    <label>YOU CONFIRMED DELIVERY!</label>
+                }
+                else{
+                    <button type="submit">OK</button>
+                }
+            </form>
+            @if(!item.Value.HostChecked)
+            {
+                <form action="/order/buyer/delete" method="post">
+                    <input type="text" name="Id" value="@item.Value.Id" hidden>
+                    <button type="submit">F##K THIS</button>
+                </form>
+            }
+        </fieldset>
+    }
+</div>
+<form action="/order/host/close" method="post">
+    <button type="submit">CLOSE!</button>
+</form>
+
+<a href="/">
+    <h1>home</h1>
+</a>
