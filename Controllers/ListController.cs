@@ -17,11 +17,6 @@ namespace BookStoreApi.Controllers
     public class ListController : DBController
     {
         
-        public IActionResult Index()
-        {
-            return View();  
-        }
-
         [HttpGet("buyer")]
         public async Task<IActionResult> Buyer()
         {
