@@ -40,22 +40,16 @@ namespace BookStoreApi.Controllers
                 return View("~/Views/Shared/Failed.cshtml", model);
             }
         }
-        private async Task<IActionResult> Tick(string? buyOrderId, string ticker)
+        private async Task<IActionResult> Tick(string? buyOrderId, string ticker, bool state)
         {
             if(buyOrderId != null){
                 var buyerOrder = await this.buyerOrderDb.FindById(buyOrderId);
                 if(buyerOrder != null){
                     if(ticker == "Buyer")
-                    {
-                        buyerOrder.BuyerChecked = true;
-                    }
-                    else {
-                        buyerOrder.HostChecked = true;
-                    }
-                    if(buyerOrder.BuyerChecked && buyerOrder.HostChecked)
-                    {
-                        buyerOrder.Completed = Timing.now();
-                    }
+                        buyerOrder.BuyerChecked = state;
+                    else
+                        buyerOrder.HostChecked = state;
+                    buyerOrder.Completed =(buyerOrder.BuyerChecked && buyerOrder.HostChecked)? Timing.now():0;
                     await this.buyerOrderDb.UpdateAsync(buyOrderId,buyerOrder);
                     var allBuyers = await this.buyerOrderDb.FindByHost(buyerOrder.AttachedHostId);
                     var hostOrder = await this.hostOrderDb.FindById(buyerOrder.AttachedHostId);
@@ -70,15 +64,25 @@ namespace BookStoreApi.Controllers
             Failed model = new Failed { ErrorMessage = "Cannot find" };
             return View("~/Views/Shared/Failed.cshtml", model);
         }
-        [HttpPost("buyer/tick")]
-        public async Task<IActionResult> BuyerTick(Order orderIdOnly)
+        [HttpPost("buyer/tick_on")]
+        public async Task<IActionResult> BuyerTickOn(Order orderIdOnly)
         {
-            return await Tick(orderIdOnly.Id,"Buyer");
+            return await Tick(orderIdOnly.Id,"Buyer",true);
         }
-        [HttpPost("host/tick")]
-        public async Task<IActionResult> HostTick(Order orderIdOnly)
+        [HttpPost("buyer/tick_off")]
+        public async Task<IActionResult> BuyerTickOff(Order orderIdOnly)
         {
-            return await Tick(orderIdOnly.Id,"Host");
+            return await Tick(orderIdOnly.Id,"Buyer",false);
+        }
+        [HttpPost("host/tick_on")]
+        public async Task<IActionResult> HostTickOn(Order orderIdOnly)
+        {
+            return await Tick(orderIdOnly.Id,"Host",true);
+        }
+        [HttpPost("host/tick_off")]
+        public async Task<IActionResult> HostTickOff(Order orderIdOnly)
+        {
+            return await Tick(orderIdOnly.Id,"Host",false);
         }
         [HttpPost("host/close")]
         public async Task<IActionResult> HostClose()
@@ -90,7 +94,7 @@ namespace BookStoreApi.Controllers
                     continue;
                 }
                 hostOrder.Closed = Timing.now();
-                var allBuyers = await this.buyerOrderDb.FindByHost(buyerOrder.AttachedHostId);
+                var allBuyers = await this.buyerOrderDb.FindByHost(hostOrder.Id);
                 if (allBuyers.All(o=>o.Completed > 0))
                 {
                     hostOrder.Completed = Timing.now();
@@ -114,8 +118,14 @@ namespace BookStoreApi.Controllers
             if(hostOrd != null && hostOrd.Id != null)
             {
                 var exists = await this.buyerOrderDb.FindByHost(hostOrd.Id);
+                var yourBuyerOrders = await this.buyerOrderDb.FindUnfinished(user.FriendlyId);
                 if(hostOrd.OwnerUserId == user.FriendlyId){
-                    Failed model = new Failed { ErrorMessage = "Why would u order urself?" };
+                    Failed model = new Failed { ErrorMessage = "Why would u order urself? (◣_◢)" };
+                    return View("~/Views/Shared/Failed.cshtml", model);
+                }
+                else if(yourBuyerOrders.Count >= 5)
+                {
+                    Failed model = new Failed { ErrorMessage = "U ordering too much (◣_◢)" };
                     return View("~/Views/Shared/Failed.cshtml", model);
                 }
                 else if(hostOrd.Completed > 0 || Timing.now() >= hostOrd.Closed)

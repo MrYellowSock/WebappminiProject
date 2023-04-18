@@ -28,14 +28,14 @@ namespace BookStoreApi.Controllers
             Int32? userId = HttpContext.Session.GetInt32("userId");
             
             List<KeyValuePair<HostOrder,BuyerOrder>> list= new List<KeyValuePair<HostOrder, BuyerOrder>>();
-            if(userId.HasValue){
+            if(userId.HasValue)
+            {
                 foreach(var buyerOrd in await this.buyerOrderDb.FindUnfinished(userId.Value))
                 {
                     var hostOrd = await this.hostOrderDb.FindByBuyer(buyerOrd);
                     if(hostOrd != null)
                     {
                         list.Add(new KeyValuePair<HostOrder, BuyerOrder>(hostOrd,buyerOrd));
-                        break;
                     }
                 }
             }

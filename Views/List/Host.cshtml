@@ -14,21 +14,20 @@
             <p>menu : @item.Value.Menu</p>
             <p>location :@item.Key.Location</p>
 
-            <form action="/order/host/tick" method="post">
-                <input type="text" name="Id" value="@item.Value.Id" hidden>
-                @if(item.Value.HostChecked)
-                {
-                    <label>YOU CONFIRMED DELIVERY!</label>
-                }
-                else{
-                    <button type="submit">OK</button>
-                }
-            </form>
-            @if(!item.Value.HostChecked)
-            {
+            @if(!item.Value.HostChecked){
+                <form action="/order/host/tick_on" method="post">
+                    <input type="text" name="Id" value="@item.Value.Id" hidden>
+                    <button type="submit">CONFIRM</button>
+                </form>
                 <form action="/order/buyer/delete" method="post">
                     <input type="text" name="Id" value="@item.Value.Id" hidden>
                     <button type="submit">F##K THIS</button>
+                </form>
+            }
+            else{
+                <form action="/order/host/tick_off" method="post">
+                    <input type="text" name="Id" value="@item.Value.Id" hidden>
+                    <button type="submit">UNCONFIRM</button>
                 </form>
             }
         </fieldset>

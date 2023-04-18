@@ -13,16 +13,18 @@
 
             <p>menu : @item.Value.Menu</p>
             <p>location :@item.Key.Location</p>
-            <form action="/order/buyer/tick" method="post">
-                <input type="text" name="Id" value="@item.Value.Id" hidden>
-                @if(item.Value.BuyerChecked)
-                {
-                    <label>YOU CONFIRMED</label>
-                }
-                else{
-                    <button type="submit">OK</button>
-                }
-            </form>
+            @if(!item.Value.BuyerChecked){
+                <form action="/order/buyer/tick_on" method="post">
+                    <input type="text" name="Id" value="@item.Value.Id" hidden>
+                    <button type="submit">CONFIRM</button>
+                </form>
+            }
+            else{
+                <form action="/order/buyer/tick_off" method="post">
+                    <input type="text" name="Id" value="@item.Value.Id" hidden>
+                    <button type="submit">UNCONFIRM</button>
+                </form>
+            }
         </fieldset>
     }
 </div>
