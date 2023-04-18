@@ -86,7 +86,15 @@ namespace BookStoreApi.Controllers
             User a = await track();
             foreach(var hostOrder in await this.hostOrderDb.FindByOwner(a.FriendlyId))
             {
+                if(hostOrder.Id == null){
+                    continue;
+                }
                 hostOrder.Closed = Timing.now();
+                var allBuyers = await this.buyerOrderDb.FindByHost(buyerOrder.AttachedHostId);
+                if (allBuyers.All(o=>o.Completed > 0))
+                {
+                    hostOrder.Completed = Timing.now();
+                }
                 await this.hostOrderDb.UpdateAsync(hostOrder.Id,hostOrder);
             }
             return RedirectToAction("Host","List");
