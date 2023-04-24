@@ -2,41 +2,164 @@
 
 @model List<KeyValuePair<HostOrder,BuyerOrder>>
 
-<a href="/list/buyer">ฝาก</a>
 <div> 
-    @foreach (var item in Model)
-    {
-        <fieldset>
-            <p>name :@item.Value.OwnerName</p>
-            <p># @item.Value.OwnerUserId</p>
-            <p>contact @item.Value.OwnerContact</p>
+</div>
 
-            <p>menu : @item.Value.Menu</p>
-            <p>location :@item.Key.Location</p>
 
-            @if(!item.Value.HostChecked){
-                <form action="/order/host/tick_on" method="post">
-                    <input type="text" name="Id" value="@item.Value.Id" hidden>
-                    <button type="submit">CONFIRM</button>
-                </form>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Just+Another+Hand" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital@0;1&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- top-bar -->
+    <div class="top-bar">
+        <div class="text-center logo">
+            FOODY
+        </div>
+
+    </div>
+    <!-- status-bar -->
+
+    <div class="leftstatus-bar">
+        <div>
+            ที่ต้องซื้อ
+        </div>
+
+    </div>
+
+    <a href="/list/buyer">
+    <div class="rightstatus-bar">
+        <div>
+            ที่ฝากซื้อ
+        </div>
+    </a>
+
+
+
+    </div>
+    <div style="height: 4vh"></div>
+    <!-- post -->
+    <div>
+       @foreach (var item in Model) {
+<div class="container-fluid rounded bg-white p-3 my-list-card">
+    <div class="row">
+        <div class="col-sm-1 flexbox" style="color: black;">
+            <label for="fname">1</label>
+        </div>
+        <div class="col-sm-7 flexstartbox" style="color: black;">
+            <label for="fname">
+                @item.Value.OwnerName
+            </label>
+            <label style="color: rgb(98, 98, 98);">
+                @item.Value.OwnerUserId
+            </label>
+        </div>
+        <div class="col-sm-4 flexbox " style="color: black;">
+            <p> @item.Value.OwnerContact</p>
+            <div class="flexbox" style="padding-right: 3vh;">
+                <div class="input-group-append">
+                    @if(!item.Value.HostChecked){
+                    <form action="/order/host/tick_on" method="post">
+                        <input type="text" name="Id" value="@item.Value.Id" hidden>
+                        <button class="btn btn-outline-secondary" type="submit"><img
+                                src="https://tse1.mm.bing.net/th?id=OIP.tyxrmk6zBuuQbBzDrrLidAHaHa&amp;pid=Api&amp;P=0"
+                                style="width: 40px;"></button>
+                    </form>
+                    }
+                    else{
+                    <form action="/order/host/tick_off" method="post">
+                        <input type="text" name="Id" value="@item.Value.Id" hidden>
+                        <button type="submit" class="btn btn-outline-secondary"><img
+                                src="https://tse3.mm.bing.net/th?id=OIP.J7R-B7Y1elbE5GhiJ9AYzAHaJW&pid=Api&P=0"
+                                style="width: 40px;"></button>
+                    </form>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-1">
+            <div style="height: 6vh;">
+
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-7 flexstartbox" style="color: rgb(98, 98, 98);">
+                <p>เมน ู: @item.Value.Menu </p>
+                <label>ที่อยู่ @item.Key.Location</label>
+
+            </div>
+
+            <div class="col-sm-4 flexbottombox" style="padding-left: 2vh;">
+                @if(!item.Value.HostChecked){
                 <form action="/order/buyer/delete" method="post">
                     <input type="text" name="Id" value="@item.Value.Id" hidden>
-                    <button type="submit">F##K THIS</button>
+                    <button class="red-button flexbox" onclick="return confirm(' ต้องการยกเลิกรายการหรือไม่? ')" type="submit"> ยกเลิก </button>
                 </form>
-            }
-            else{
-                <form action="/order/host/tick_off" method="post">
-                    <input type="text" name="Id" value="@item.Value.Id" hidden>
-                    <button type="submit">UNCONFIRM</button>
-                </form>
-            }
-        </fieldset>
-    }
-</div>
-<form action="/order/host/close" method="post">
-    <button type="submit">CLOSE!</button>
-</form>
+                }
+            </div>
 
-<a href="/">
-    <h1>home</h1>
-</a>
+
+        </div>
+
+
+
+    </div>
+</div>
+        }
+        
+    </div>
+    <div style="height:  15vh;">
+    <!-- footer -->
+    <footer class="sticky-footer  " style="justify-content: flex-start;">
+        <a href="/">
+            <div class="home-button">
+                <svg
+                  style="fill: none; stroke: white; stroke-width: 1px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-house-door-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"
+                  />
+                </svg>
+              </div>
+        </a>
+        
+    <form action="/order/host/close" method="post">
+        <button class="cancel-button" type="submit" onclick="return confirm('ต้องการปิดรับออเดอร์หรือไม่?')">
+            ปิดรับ Order ทันที
+        </button>
+    </form>
+
+
+    </footer>
+</body>

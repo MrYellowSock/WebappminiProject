@@ -1,25 +1,96 @@
 @model string
-<form action="/order/buyer/add" method="post">
-  <div>
-    <label for="OwnerName">Name:</label>
-    <input type="text" id="OwnerName" name="OwnerName" required />
-  </div>
-  <div>
-    <label for="OwnerContact">Phone num:</label>
-    <input type="text" id="OwnerContact" name="OwnerContact" required />
-  </div>
-  <div>
-    <label for="Menu">Menu:</label>
-    <input type="text" id="Menu" name="Menu" required />
-  </div>
-  <div>
-    <label for="Location">Location:</label>
-    <input type="text" id="Location" name="Location" required />
-  </div>
-  <div>
-    <label for="Price">Price:</label>
-    <input type="number" id="Price" name="Price" required />
-  </div>
-    <input id="AttachedHostId" name="AttachedHostId" value="@Model" hidden/>
-    <button type="submit">Submit</button>
-</form>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Just+Another+Hand"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- top-bar -->
+    <div class="top-bar">
+      <div class="text-center logo">Delivery Post</div>
+    </div>
+    <!-- status-bar -->
+
+    <!-- post -->
+    <div style="height:15vh "></div>
+    <div class="container rounded bg-white p-4 my-form-card">
+      <form action="/order/buyer/add" method="post">
+        <label for="OwnerName">ชื่อ</label>
+        <input type="text" id="OwnerName" name="OwnerName" required />
+        <label for="OwnerContact">เบอร์โทรศัพท์</label>
+        <input type="text" id="OwnerContact" name="OwnerContact" required />
+        <label for="Menu">เมนู</label>
+        <input type="text" id="Menu" name="Menu" required />
+        <label for="Location">อยู่ไหน</label>
+        <input type="text" id="Location" name="Location" required />
+        <label for="Price">ราคา</label>
+        <input type="number" id="Price" name="Price" required />
+        <input id="AttachedHostId" name="AttachedHostId" value="@Model" hidden/>
+
+        <input
+          class="pink-button mt-4 mx-1"
+          type="submit"
+        />
+        <input
+          class="grey-button mx-1"
+          type="button"
+          onclick="alert('อิออก')"
+          value="ยกเลิก"
+        />
+      </form>
+    </div>
+
+    <!-- footer -->
+    <footer class="sticky-footer-home">
+        <a href="/">
+            <div class="home-button">
+                <svg
+                  style="fill: none; stroke: white; stroke-width: 1px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-house-door-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"
+                  />
+                </svg>
+              </div>
+        </a>
+    </footer>
+  </body>

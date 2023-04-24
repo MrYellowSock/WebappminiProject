@@ -33,10 +33,10 @@ namespace BookStoreApi.Controllers
                 hostOrd.Closed = Timing.nowAddMinute(hostOrd.Closed);
                 hostOrd.Limit = 5;
                 await this.hostOrderDb.Insert(hostOrd);
-                return View("~/Views/Order/Success.cshtml");
+                return RedirectToAction("Index","Home");
             }
             else{
-                Failed model = new Failed { ErrorMessage = "YOu have unfinished stuffs" };
+                Failed model = new Failed { ErrorMessage = "ขึ้นหน้านี้ กรณียังเคลียรายการต้องซื้อเซทเก่ายังไม่เสร็จ แล้วดันมากดปุ่ม + ในหน้า main" };
                 return View("~/Views/Shared/Failed.cshtml", model);
             }
         }
@@ -141,7 +141,7 @@ namespace BookStoreApi.Controllers
                     buyerOrd.OwnerUserId = user.FriendlyId;
                     buyerOrd.Created = Timing.now();
                     await this.buyerOrderDb.Insert(buyerOrd);
-                    return View("~/Views/Order/Success.cshtml");
+                    return RedirectToAction("Index","Home");
                 }
             }
             else{
