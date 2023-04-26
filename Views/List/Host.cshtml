@@ -39,7 +39,7 @@
     </div>
     <!-- status-bar -->
 
-    <div class="leftstatus-bar">
+    <div class="leftstatus-bar" style="background-color: rgb(67, 187, 94); box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.45);">
         <div>
             ที่ต้องซื้อ
         </div>
@@ -47,10 +47,11 @@
     </div>
 
     <a href="/list/buyer">
-    <div class="rightstatus-bar">
+    <div class="rightstatus-bar" style="background-color:#BBBBBB;">
         <div>
             ที่ฝากซื้อ
         </div>
+    </div>
     </a>
 
 
@@ -70,7 +71,7 @@
                 @item.Value.OwnerName
             </label>
             <label style="color: rgb(98, 98, 98);">
-                @item.Value.OwnerUserId
+                #@item.Value.OwnerUserId
             </label>
         </div>
         <div class="col-sm-4 flexbox " style="color: black;">
@@ -80,17 +81,15 @@
                     @if(!item.Value.HostChecked){
                     <form action="/order/host/tick_on" method="post">
                         <input type="text" name="Id" value="@item.Value.Id" hidden>
-                        <button class="btn btn-outline-secondary" type="submit"><img
-                                src="https://tse1.mm.bing.net/th?id=OIP.tyxrmk6zBuuQbBzDrrLidAHaHa&amp;pid=Api&amp;P=0"
-                                style="width: 40px;"></button>
+                        <button style="width:27px; height: 27px; background-color: #d9d9d9;" class="btn" type="submit"></button>
                     </form>
                     }
                     else{
                     <form action="/order/host/tick_off" method="post">
                         <input type="text" name="Id" value="@item.Value.Id" hidden>
-                        <button type="submit" class="btn btn-outline-secondary"><img
-                                src="https://tse3.mm.bing.net/th?id=OIP.J7R-B7Y1elbE5GhiJ9AYzAHaJW&pid=Api&P=0"
-                                style="width: 40px;"></button>
+                        <button type="submit" class="btn">
+                            <svg style="color: rgb(67, 187, 94);" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" zoomAndPan="magnify" viewBox="0 0 30 30.000001" height="40" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="id1"><path d="M 2.328125 4.222656 L 27.734375 4.222656 L 27.734375 24.542969 L 2.328125 24.542969 Z M 2.328125 4.222656 " clip-rule="nonzero" fill="#43bb5e"></path></clipPath></defs><g clip-path="url(#id1)"><path fill="#43bb5e" d="M 27.5 7.53125 L 24.464844 4.542969 C 24.15625 4.238281 23.65625 4.238281 23.347656 4.542969 L 11.035156 16.667969 L 6.824219 12.523438 C 6.527344 12.230469 6 12.230469 5.703125 12.523438 L 2.640625 15.539062 C 2.332031 15.84375 2.332031 16.335938 2.640625 16.640625 L 10.445312 24.324219 C 10.59375 24.472656 10.796875 24.554688 11.007812 24.554688 C 11.214844 24.554688 11.417969 24.472656 11.566406 24.324219 L 27.5 8.632812 C 27.648438 8.488281 27.734375 8.289062 27.734375 8.082031 C 27.734375 7.875 27.648438 7.679688 27.5 7.53125 Z M 27.5 7.53125 " fill-opacity="1" fill-rule="nonzero"></path></g></svg>
+                        </button>
                     </form>
                     }
                 </div>
@@ -109,18 +108,23 @@
 
         <div class="row">
             <div class="col-sm-7 flexstartbox" style="color: rgb(98, 98, 98);">
-                <p>เมน ู: @item.Value.Menu </p>
-                <label>ที่อยู่ @item.Key.Location</label>
+                <p>เมนู: @item.Value.Menu ราคา: @item.Value.Price บาท</p>
+                <label>ที่อยู่: @item.Key.Location</label>
 
             </div>
 
             <div class="col-sm-4 flexbottombox" style="padding-left: 2vh;">
-                @if(!item.Value.HostChecked){
                 <form action="/order/buyer/delete" method="post">
                     <input type="text" name="Id" value="@item.Value.Id" hidden>
+                   @if(!item.Value.HostChecked){
                     <button class="red-button flexbox" onclick="return confirm(' ต้องการยกเลิกรายการหรือไม่? ')" type="submit"> ยกเลิก </button>
+                   }
+                   else{
+                    <button class="red-button flexbox" disabled style="background-color: #b9b9b9"> ยกเลิก </button>
+
+                   }
                 </form>
-                }
+                
             </div>
 
 
@@ -135,7 +139,7 @@
     </div>
     <div style="height:  15vh;">
     <!-- footer -->
-    <footer class="sticky-footer  " style="justify-content: flex-start;">
+    <footer class="sticky-footer">
         <a href="/">
             <div class="home-button">
                 <svg

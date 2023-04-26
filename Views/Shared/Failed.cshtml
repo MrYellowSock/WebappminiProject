@@ -58,17 +58,17 @@
                   value="ตกลง"
                   />
             </a>
+            <br>
+
+            <smallwhitetext >
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    @Model.ErrorMessage
+                }
+            </smallwhitetext>
         </bigbox>
     </div>
-    <div style="height:10vh"></div>
-    <div class="container-fluid" >
-        <bigwhitetext>
-            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-            {
-                @Model.ErrorMessage
-            }
-        </bigwhitetext>
-    </div>
+
  
     <div style="height:  15vh;">
     <!-- footer -->
