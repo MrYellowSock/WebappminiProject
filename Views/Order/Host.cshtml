@@ -50,7 +50,7 @@
         <input type="text" id="OwnerName" name="OwnerName" required />
 
         <label for="OwnerContact">เบอร์โทรศัพท์</label>
-        <input type="text" id="OwnerContact" name="OwnerContact" required />
+        <input type="tel" id="OwnerContact" name="OwnerContact" maxlength="10" pattern="[0-9]{10}" required />
 
         <label for="Location">อยู่ไหน</label>
         <input type="text" id="Location" name="Location" required />
@@ -65,12 +65,14 @@
           class="pink-button mt-4 mx-1"
           type="submit"
         />
+        <a href="/">
         <input
           class="grey-button mx-1"
           type="button"
-          onclick="alert('อิออก')"
+          
           value="ยกเลิก"
         />
+        </a>
       </form>
     </div>
 

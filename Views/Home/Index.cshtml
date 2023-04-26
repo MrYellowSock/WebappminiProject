@@ -42,7 +42,7 @@
                 @foreach (string item in Model.Aliases)
                 {
                     @item
-                    <label>,</label>
+                    <label> </label>
                 }
             </div>
             <div>
@@ -57,15 +57,15 @@
         @foreach (var item in Model.Hosts)
         {
             string closeTime = DateTimeOffset.FromUnixTimeMilliseconds(item.Value.Closed).ToLocalTime().ToString("h:mm tt");
-            <div class="container rounded bg-black p-3 my-status-card">
+            <div class="container bg-black p-3 my-status-card">
                 <div class="row">
                   <div class="col-sm-3 flexbox" >
                     <label  for="fname">@item.Value.OwnerName</label>
                   </div>
                   <div class="col-sm-9 flexbox "  >
-                    <p> อยู่ : @item.Value.Location</p>
+                    <p> อยู่: @item.Value.Location</p>
                     <div class="flexbox" style="padding-right: 3vh;">
-                        <img src="http://www.clker.com/cliparts/R/d/z/v/H/1/neon-green-dot-hi.png" style="width: 40px;">
+                        <img src="http://www.clker.com/cliparts/R/d/z/v/H/1/neon-green-dot-hi.png" style="width: 25px;">
                     </div>
         
                   </div>
@@ -80,7 +80,7 @@
                     <label  for="tag">#@item.Value.OwnerUserId</label>
                   </div>
                   <div class="col-sm-9 flexbox" >
-                    <p>จะไป:@item.Value.TargetLocation</p>
+                    <p>จะไป: @item.Value.TargetLocation</p>
                   </div>
         
                 </div>
