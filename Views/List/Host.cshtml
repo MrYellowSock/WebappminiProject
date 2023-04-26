@@ -60,11 +60,12 @@
     <div style="height: 4vh"></div>
     <!-- post -->
     <div>
-       @foreach (var item in Model) {
+	@for(int i=0;i<Model.Count;i++){
+		var item = Model[i];
 <div class="container-fluid rounded bg-white p-3 my-list-card">
     <div class="row">
         <div class="col-sm-1 flexbox" style="color: black;">
-            <label for="fname">1</label>
+            <label for="fname">@(i+1)</label>
         </div>
         <div class="col-sm-7 flexstartbox" style="color: black;">
             <label for="fname">
