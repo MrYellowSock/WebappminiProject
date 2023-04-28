@@ -25,7 +25,7 @@ namespace BookStoreApi.Controllers
                     .Select(ord=>ord.OwnerName)
                     .Concat(( await this.buyerOrderDb.FindByOwner(userId.Value) ).Select(ord=>ord.OwnerName))
                     .Distinct()
-                    .Take(6)
+                    .TakeLast(6)
                     .ToList();
 
                 return View(new HomeIndex(hosts,alias,userId.Value));
