@@ -204,13 +204,11 @@ body {
 }
 .cancel-button {
   display: flex;
-  margin-left: 12vh;
   color: #ffffff;
   justify-content: center;
   align-items: center;
   justify-self: center;
   align-self: center;
-  margin-right: 10vh;
   border-style: solid;
   background: #fd5454;
   font-family: Kanit;
@@ -218,7 +216,7 @@ body {
 
   border-color: #fd5454;
   border-radius: 10vh;
-  min-width: 94%;
+  min-width: max-content;
   max-width: 70%;
   height: 7vh;
   font-size: 2.5vh;
