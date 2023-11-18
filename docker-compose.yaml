@@ -8,5 +8,7 @@ services:
       - ./db:/data/db
   foody:
     container_name: foody
+    environment:
+      - TZ=Asia/Bangkok
     network_mode: "host"
     build: .
